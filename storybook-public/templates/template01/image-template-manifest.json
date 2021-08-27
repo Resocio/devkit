@@ -1,0 +1,44 @@
+{
+  "partials": {
+    "content": "./content.html.mustache",
+    "styles": "./styles.css.mustache"
+  },
+  "parameters": [
+    {
+      "name": "Title",
+      "slug": "title",
+      "type": "text",
+      "demoValue": "Lorem Ipsum"
+    },
+    {
+      "name": "Logo",
+      "slug": "logoUrl",
+      "type": "imageUrl",
+      "demoValue": "/img/logo.png"
+    },
+    {
+      "name": "Main image",
+      "slug": "mainImageUrl",
+      "type": "imageUrl",
+      "demoValue": "/img/photo.jpg"
+    },
+    {
+      "name": "Text color",
+      "slug": "textColor",
+      "type": "color",
+      "demoValue": "#ffffff"
+    },
+    {
+      "name": "Background color",
+      "slug": "backgroundColor",
+      "type": "color",
+      "demoValue": "#654789"
+    },
+    {
+      "name": "Text direction",
+      "slug": "direction",
+      "type": "textDirection",
+      "demoValue": "ltr"
+    }
+  ]
+}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Alert } from 'react-bootstrap';
 import { ImageTemplate, loadRemoteTemplate } from '@resoc/core';
 import TemplatePresentation from './TemplatePresentation';
+import StarterAlert from './StarterAlert';
 
 export type TemplateAppProps = {
   manifestUrl: string;
@@ -35,9 +36,16 @@ const TemplateApp = (props: TemplateAppProps) => {
       )}
 
       {template && (
-        <TemplatePresentation
-          template={template}
-        />
+        <>
+          <StarterAlert
+            templateDir="TODO"
+            manifestPath="TODO"
+          />
+
+          <TemplatePresentation
+            template={template}
+          />
+        </>
       )}
     </div>
   );

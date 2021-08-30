@@ -17,7 +17,11 @@ const ParamInput = (props: ParamInputProps) => {
       field = (
         <Form.Select
           aria-label={paramLabel(props.param)}
-          onChange={(e) => props.onChange(e.target.value)}
+          onSelect={(e) => {
+            // Although e.target is not a FormControlElement, value field *does* exist
+            const target: any = e.target;
+            props.onChange(target.value);
+          }}
         >
           {props.param.values?.map(v =>
             <option value={v.value}>{v.label || v.value}</option>

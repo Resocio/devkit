@@ -10,12 +10,6 @@
       "demoValue": "Lorem ipsum dolor sit amet"
     },
     {
-      "label": "Logo",
-      "name": "logoUrl",
-      "type": "imageUrl",
-      "demoValue": "logo.png"
-    },
-    {
       "name": "brandName",
       "type": "string",
       "demoValue": "Lorem Ipsum"

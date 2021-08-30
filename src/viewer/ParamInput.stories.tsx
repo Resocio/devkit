@@ -18,12 +18,23 @@ const Template: Story<ParamInputProps> = (args, { loaded: { template } }) => (
   <ParamInput {...args} />
 );
 
-export const Default = Template.bind({});
-Default.args = {
+export const String = Template.bind({});
+String.args = {
   param: {
-    name: 'My parameter',
-    slug: 'my_param',
-    type: ParamType.ImageUrl,
-    demoValue: "/img/logo.png"
+    name: 'myParam',
+    type: ParamType.String,
+    demoValue: "This is some text"
+  }
+};
+
+export const Choice = Template.bind({});
+Choice.args = {
+  param: {
+    name: 'myChoiceParam',
+    type: ParamType.Choice,
+    values: [
+      'First', 'Second'
+    ],
+    demoValue: "First"
   }
 };

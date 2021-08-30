@@ -15,9 +15,12 @@ const ParamInput = (props: ParamInputProps) => {
   switch(props.param.type) {
     case(ParamType.Choice):
       field = (
-        <Form.Select aria-label={paramLabel(props.param)}>
+        <Form.Select
+          aria-label={paramLabel(props.param)}
+          onChange={(e) => props.onChange(e.target.value)}
+        >
           {props.param.values?.map(v =>
-            <option value={v}>{v}</option>
+            <option value={v.value}>{v.label || v.value}</option>
           )}
         </Form.Select>
       );

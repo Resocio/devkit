@@ -33,7 +33,7 @@ Choice.args = {
     name: 'myChoiceParam',
     type: ParamType.Choice,
     values: [
-      'First', 'Second'
+      { value: 'first', label: 'First!!' }, { value: 'second', label: 'Second...' }
     ],
     demoValue: "First"
   }

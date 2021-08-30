@@ -60,10 +60,10 @@ const TemplatePresentation = (props: TemplatePresentationProps) => {
           {props.template.parameters.map(param => (
             <ParamInput
               param={param}
-              value={parameters[param.slug]}
+              value={parameters[param.name]}
               onChange={(v) => {
                 const newValues = Object.assign({}, parameters);
-                newValues[param.slug] = v;
+                newValues[param.name] = v;
                 setParameters(newValues);
               }}
             />

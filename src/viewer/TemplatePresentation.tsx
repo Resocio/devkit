@@ -4,6 +4,7 @@ import { demoParamValues, ImageTemplate, ParamValues } from '@resoc/core';
 import ParamInput from './ParamInput';
 import TemplatePreview from './TemplatePreview';
 import styled from 'styled-components';
+import CreateCommandLine from './CreateCommandLine';
 
 export type TemplatePresentationProps = {
   template: ImageTemplate;
@@ -34,6 +35,9 @@ const Preview = (props: PreviewProps) => (
 );
 
 const Wrapper = styled.div`
+`;
+
+const PreviewsParamsWrapper = styled.div`
   display: flex;
   flex-direction: row;
   gap: 16px;
@@ -54,52 +58,66 @@ const TemplatePresentation = (props: TemplatePresentationProps) => {
 
   return (
     <Wrapper>
-      <Card>
-        <Card.Body>
-          <Card.Title>Previews</Card.Title>
-
-          <PreviewsWrapper>
-            <Preview
-              title="Facebook"
-              template={props.template}
-              parameters={parameters}
-              ratio={RATIO_FACEBOOK}
-            />
-
-            <Preview
-              title="Twitter Card"
-              template={props.template}
-              parameters={parameters}
-              ratio={RATIO_TWTTER}
-            />
-          </PreviewsWrapper>
-        </Card.Body>
-      </Card>
-
-      <ParamsContainer>
+      <PreviewsParamsWrapper className="mb-3">
         <Card>
           <Card.Body>
-            <Card.Title>Parameters</Card.Title>
+            <Card.Title>Previews</Card.Title>
 
-            <Form>
-              {props.template.parameters.map(param => (
-                <div className="mb-3">
-                  <ParamInput
-                    key={param.name}
-                    param={param}
-                    value={parameters[param.name]}
-                    onChange={(v) => {
-                      const newValues = Object.assign({}, parameters);
-                      newValues[param.name] = v;
-                      setParameters(newValues);
-                    }}
-                  />
-                </div>
-              ))}
-            </Form>
+            <PreviewsWrapper>
+              <Preview
+                title="Facebook"
+                template={props.template}
+                parameters={parameters}
+                ratio={RATIO_FACEBOOK}
+              />
+
+              <Preview
+                title="Twitter Card"
+                template={props.template}
+                parameters={parameters}
+                ratio={RATIO_TWTTER}
+              />
+            </PreviewsWrapper>
           </Card.Body>
         </Card>
-      </ParamsContainer>
+
+        <ParamsContainer>
+          <Card>
+            <Card.Body>
+              <Card.Title>Parameters</Card.Title>
+
+              <Form>
+                {props.template.parameters.map(param => (
+                  <div className="mb-3">
+                    <ParamInput
+                      key={param.name}
+                      param={param}
+                      value={parameters[param.name]}
+                      onChange={(v) => {
+                        const newValues = Object.assign({}, parameters);
+                        newValues[param.name] = v;
+                        setParameters(newValues);
+                      }}
+                    />
+                  </div>
+                ))}
+              </Form>
+            </Card.Body>
+          </Card>
+        </ParamsContainer>
+      </PreviewsParamsWrapper>
+
+      <Card className="mb-3">
+        <Card.Body>
+          <Card.Title>
+            Create an image
+          </Card.Title>
+          <CreateCommandLine
+            template={props.template}
+            values={parameters}
+          />
+        </Card.Body>
+      </Card>
     </Wrapper>
   );
 };

@@ -32,6 +32,7 @@
     "@resoc/core": "^0.0.1",
     "bootstrap": "^5.1.0",
     "copy": "^0.3.2",
+    "copy-text-to-clipboard": "^3.0.1",
     "create-img": "^0.0.4",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0-beta.5",

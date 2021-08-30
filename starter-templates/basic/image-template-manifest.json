@@ -1,3 +1,49 @@
 {
-  "Todo": "in progress..."
+  "partials": {
+    "content": "./content.html.mustache",
+    "styles": "./styles.css.mustache"
+  },
+  "parameters": [
+    {
+      "name": "title",
+      "type": "text",
+      "demoValue": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "label": "Logo",
+      "name": "logoUrl",
+      "type": "imageUrl",
+      "demoValue": "logo.png"
+    },
+    {
+      "name": "brandName",
+      "type": "string",
+      "demoValue": "Lorem Ipsum"
+    },
+    {
+      "label": "Main image",
+      "name": "mainImageUrl",
+      "type": "imageUrl",
+      "demoValue": "https://resoc.io/assets/img/demo/photos/pexels-photo-371589.jpeg"
+    },
+    {
+      "name": "textColor",
+      "type": "color",
+      "demoValue": "#ffffff"
+    },
+    {
+      "name": "backgroundColor",
+      "type": "color",
+      "demoValue": "#20552a"
+    },
+    {
+      "name": "textDirection",
+      "type": "choice",
+      "values": [
+        { "value": "ltr", "label": "Left to Right"},
+        { "value": "rtl", "label": "Right to Left"}
+      ],
+      "demoValue": "ltr"
+    }
+  ]
 }

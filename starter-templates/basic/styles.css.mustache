@@ -1,0 +1,109 @@
+#template-root {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: grey;
+  display: flex;
+  align-items: stretch;
+  color: {{ textColor }};
+}
+
+[dir=rtl] .container {
+  direction: rtl;
+}
+
+[dir=ltr] .container {
+  direction: ltr;
+}
+
+.side {
+  background-color: {{ backgroundColor }};
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1vw;
+}
+
+.side-content {
+  margin-top: 4%;
+  flex: 1;
+}
+
+#title {
+  margin-top: 0;
+  font-size: 2rem;
+  font-family: Roboto;
+  height: 100%;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 9vh;
+}
+
+.logo {
+  width: 9vh;
+  height: 9vh;
+  margin-right: 2vw;
+}
+
+.brand-name {
+  margin: 0;
+  font-size: 1.5rem;
+  font-family: Roboto;
+}
+
+.main {
+  flex: 1.8;
+  position: relative;
+}
+
+.main-image {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.extended-background-ltr {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: {{ backgroundColor }};
+  width: 3vw;
+  height: 100%;
+  clip-path: polygon(
+    0 0, /* left top */
+    100% 0, /* right top */
+    0 100%, /* right bottom */
+    0 100% /* left bottom */
+  );
+}
+
+[dir=rtl] .extended-background-ltr {
+  display: none;
+}
+
+.extended-background-rtl {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: {{ backgroundColor }};
+  width: 3vw;
+  height: 100%;
+  clip-path: polygon(
+    0 0, /* left top */
+    100% 0, /* right top */
+    100% 100% /* right bottom */
+  );
+}
+
+[dir=ltr] .extended-background-rtl {
+  display: none;
+}

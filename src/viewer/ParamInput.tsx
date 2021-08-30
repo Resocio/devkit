@@ -17,7 +17,7 @@ const ParamInput = (props: ParamInputProps) => {
       field = (
         <Form.Select
           aria-label={paramLabel(props.param)}
-          onSelect={(e) => {
+          onChange={(e) => {
             // Although e.target is not a FormControlElement, value field *does* exist
             const target: any = e.target;
             props.onChange(target.value);

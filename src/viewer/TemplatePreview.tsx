@@ -42,6 +42,13 @@ export type TemplatePreviewProps = {
 };
 
 const TemplatePreview = (props: TemplatePreviewProps) => {
+  // Why such a double-component system?
+  // This is because the template system is not regular React code.
+  // It relies on iframes for style isolation.
+  // Consequence: unlike React reconsiliation, this is slow.
+  // To prevent lame blinking effect, iframe are rendered off-screen
+  // (more exactly: below the other iframe)
+
   const [showDivA, setShowDivA] = useState<boolean>(true);
   const [templateA, setTemplateA] = useState<string | null>(null);
   const [templateB, setTemplateB] = useState<string | null>(null);
@@ -56,9 +63,20 @@ const TemplatePreview = (props: TemplatePreviewProps) => {
     );
 
     if (showDivA) {
-      setTemplateB(templateAsHtml);
+      // Why checking changes in templateA and templateB instead of setting all the time?
+      // This is to detect cases where hidden iframe just needs to be displayed again.
+      // This happen when the user is toggling values.
+      if (templateAsHtml !== templateB) {
+        setTemplateB(templateAsHtml);
+      } else {
+        setShowDivA(false);
+      }
     } else {
-      setTemplateA(templateAsHtml);
+      if (templateAsHtml !== templateA) {
+        setTemplateA(templateAsHtml);
+      } else {
+        setShowDivA(true);
+      }
     }
   }, [props.template, props.parameters, props.width, props.height]);
 

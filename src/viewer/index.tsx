@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import TemplateApp from "./TemplateApp";
+import AppLoader from "./AppLoader";
 
 ReactDOM.render(
-  <TemplateApp manifestUrl="/image-template-manifest.json" />,
+  <AppLoader />,
   document.getElementById("root")
 );

@@ -30,6 +30,7 @@
   "homepage": "https://github.com/Resocio/devkit#readme",
   "dependencies": {
     "@resoc/core": "^0.0.1",
+    "axios": "^0.21.1",
     "bootstrap": "^5.1.0",
     "copy": "^0.3.2",
     "copy-text-to-clipboard": "^3.0.1",
@@ -40,7 +41,8 @@
     "reload": "^3.2.0",
     "styled-components": "^5.3.1",
     "supervisor": "^0.12.0",
-    "sync-directory": "^2.2.22"
+    "sync-directory": "^2.2.22",
+    "tmp-promise": "^3.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

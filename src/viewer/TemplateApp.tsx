@@ -6,6 +6,8 @@ import StarterAlert from './StarterAlert';
 
 export type TemplateAppProps = {
   manifestUrl: string;
+  templateDir: string;
+  manifestPath: string;
 };
 
 const TemplateApp = (props: TemplateAppProps) => {
@@ -38,8 +40,8 @@ const TemplateApp = (props: TemplateAppProps) => {
       {template && (
         <>
           <StarterAlert
-            templateDir="TODO"
-            manifestPath="TODO"
+            templateDir={props.templateDir}
+            manifestPath={props.manifestPath}
           />
 
           <TemplatePresentation

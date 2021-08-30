@@ -37,15 +37,15 @@ const runCommand = async () => {
     });
 
   program
-    .command('view [template-dir]')
+    .command('view [manifest-path]')
     .description('Display an image template in your browser, and refresh as you edit it')
-    .action(async (templateDir, args) => {
-      const dir = templateDir || '.';
-      await viewTemplate(dir);
+    .action(async (templatePath, args) => {
+      const path = templatePath || './image-template-manifest.json';
+      await viewTemplate(path);
     });
 
   program
-    .command('create [template-manifest-path]')
+    .command('create [manifest-path]')
     .description('Create and image base on an image template')
     .option('-p, --params <parameters...>', 'Parameter values, with <name>=<value> format')
     .option('-o, --output <imagePath>', 'Output image file', './output.png')

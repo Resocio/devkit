@@ -6,13 +6,23 @@ import { syncOnChange } from "./sync-on-change";
 import supervisor from 'supervisor'
 import clc from 'cli-color'
 import { log, notice, warn } from "./log";
+import { file as tmpFile } from 'tmp-promise';
 
-export const viewTemplate = async (templateDir: string) => {
+export const viewTemplate = async (manifestPath: string) => {
   const viewerDir = path.normalize(`${__dirname}/../../viewer`);
-  templateDir = path.resolve(templateDir);
+  manifestPath = path.resolve(path.normalize(manifestPath));
+  const manifestName = path.basename(manifestPath);
+  const templateDir = path.dirname(manifestPath);
   const serverDir = await fs.mkdtemp(path.join(os.tmpdir(), 'resoc-view-server-'));
 
-  syncOnChange(templateDir, serverDir, viewerDir);
+  const envFile = await tmpFile();
+  await fs.writeFile(envFile.path, JSON.stringify({
+    manifestPath,
+    templateDir,
+    manifestName
+  }));
+
+  syncOnChange(templateDir, serverDir, viewerDir, envFile.path);
 
   const runFile = path.join(os.tmpdir(), 'reload-' + Math.random().toString().slice(2))
   const serverFile = path.join(__dirname, '../../node_modules/reload/lib/reload-server.js')

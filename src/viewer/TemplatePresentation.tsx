@@ -59,6 +59,7 @@ const TemplatePresentation = (props: TemplatePresentationProps) => {
 
           {props.template.parameters.map(param => (
             <ParamInput
+              key={param.name}
               param={param}
               value={parameters[param.name]}
               onChange={(v) => {

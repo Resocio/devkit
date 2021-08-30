@@ -20,15 +20,15 @@ const Template: TemplateStory = (args: TemplatePreviewProps, { loaded: { templat
 export const Default = Template.bind({});
 Default.loaders = [
   async () => ({
-    template: await loadRemoteTemplate('/templates/template01/image-template-manifest.json')
+    template: await loadRemoteTemplate('/basic/image-template-manifest.json')
   }),
 ];
 Default.args = {
   width: 500,
   height: 300,
   parameters: {
-    logoUrl: '/img/logo.png',
-    mainImageUrl: '/img/photo.jpg',
+    logoUrl: '/basic/logo.png',
+    mainImageUrl: 'https://resoc.io/assets/img/demo/photos/pexels-photo-371589.jpeg',
     textColor: '#ffffff',
     backgroundColor: '#654789',
     title: 'Some great content here',

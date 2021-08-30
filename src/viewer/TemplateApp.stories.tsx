@@ -18,10 +18,10 @@ const Template: Story<TemplateAppProps> = (args: TemplateAppProps) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  manifestUrl: '/templates/template01/image-template-manifest.json'
+  manifestUrl: '/basic/image-template-manifest.json'
 };
 
 export const Broken01 = Template.bind({});
 Broken01.args = {
-  manifestUrl: '/templates/broken01/unexisting-manifest.json'
+  manifestUrl: '/no-such-manifest.json'
 };

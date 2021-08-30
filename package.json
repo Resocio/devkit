@@ -11,7 +11,7 @@
     "build:cli": "rollup -c",
     "build": "npm run build:bundle && npm run build:cli",
     "build-storybook": "build-storybook",
-    "storybook": "start-storybook -p 6006 -s ./storybook-public"
+    "storybook": "start-storybook -p 6006 -s ./starter-templates"
   },
   "repository": {
     "type": "git",

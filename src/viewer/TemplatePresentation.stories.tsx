@@ -20,7 +20,7 @@ const Template: TemplateStory = (args: TemplatePresentationProps, { loaded: { te
 export const Default = Template.bind({});
 Default.loaders = [
   async () => ({
-    template: await loadRemoteTemplate('/templates/template01/image-template-manifest.json')
+    template: await loadRemoteTemplate('/basic/image-template-manifest.json')
   }),
 ];
 Default.args = {};

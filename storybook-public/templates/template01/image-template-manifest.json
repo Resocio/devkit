@@ -5,39 +5,39 @@
   },
   "parameters": [
     {
-      "name": "Title",
-      "slug": "title",
-      "type": "text",
+      "name": "title",
+      "type": "string",
       "demoValue": "Lorem Ipsum"
     },
     {
-      "name": "Logo",
-      "slug": "logoUrl",
+      "label": "Logo",
+      "name": "logoUrl",
       "type": "imageUrl",
       "demoValue": "/img/logo.png"
     },
     {
-      "name": "Main image",
-      "slug": "mainImageUrl",
+      "label": "Main image",
+      "name": "mainImageUrl",
       "type": "imageUrl",
       "demoValue": "/img/photo.jpg"
     },
     {
-      "name": "Text color",
-      "slug": "textColor",
+      "name": "textColor",
       "type": "color",
       "demoValue": "#ffffff"
     },
     {
-      "name": "Background color",
-      "slug": "backgroundColor",
+      "name": "backgroundColor",
       "type": "color",
       "demoValue": "#654789"
     },
     {
-      "name": "Text direction",
-      "slug": "direction",
-      "type": "textDirection",
+      "name": "textDirection",
+      "type": "choice",
+      "values": [
+        { "value": "ltr", "label": "Left to Right"},
+        { "value": "rtl", "label": "Right to Left"}
+      ],
       "demoValue": "ltr"
     }
   ]

@@ -31,6 +31,6 @@ Default.args = {
     textColor: '#ffffff',
     backgroundColor: '#654789',
     title: 'Some great content here',
-    direction: 'ltr',
+    textDirection: 'ltr',
   }
 };

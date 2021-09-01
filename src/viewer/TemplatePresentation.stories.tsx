@@ -2,7 +2,7 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react';
 
 import TemplatePresentation, { TemplatePresentationProps } from './TemplatePresentation';
-import { loadRemoteTemplate } from '@resoc/core';
+import { DefaultManifestName, loadRemoteTemplate } from '@resoc/core';
 
 export default {
   title: 'TemplatePresentation',
@@ -20,7 +20,7 @@ const Template: TemplateStory = (args: TemplatePresentationProps, { loaded: { te
 export const Default = Template.bind({});
 Default.loaders = [
   async () => ({
-    template: await loadRemoteTemplate('/image-template-manifest.json')
+    template: await loadRemoteTemplate(`/${DefaultManifestName}`)
   }),
 ];
 Default.args = {};

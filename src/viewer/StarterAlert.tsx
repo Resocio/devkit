@@ -13,8 +13,8 @@ const StarterAlert = (props: StarterAlertProps) => {
     return (
       <Alert variant="primary" onClose={() => setShow(false)} dismissible>
         <p>
-          🖊️ Edit the files in <code>{props.templateDir}</code>. This is just some HTML and CSS, with a little bit of Mustache,
-          a templating system you will understand in seconds!
+          🖊️ Edit the files in <code>{props.templateDir}</code>. This is just some HTML and CSS, with a little bit
+          of <a target="_blank" href="http://mustache.github.io/mustache.5.html">Mustache</a>, a simple templating system.
         </p>
 
         <p>
@@ -23,12 +23,12 @@ const StarterAlert = (props: StarterAlertProps) => {
         </p>
 
         <p>
-          ⚙️ Change the parameters values in the right panel to see how your template looks like in various situations.
+          ⚙️ Change the parameter values below to see how your template looks like in various situations.
           You can define your own parameters by editing <code>{props.manifestPath}</code>.
         </p>
 
         <p>
-          🚀 When your template is ready, use the command line below to create an image &#8212; or a thousand!
+          🚀 When your template is ready, use the command line below to create an image &#8212; <i>or a thousand!</i>
         </p>
       </Alert>
     );

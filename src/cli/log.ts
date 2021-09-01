@@ -8,6 +8,10 @@ export const warn = (msg: string) => (
   clc.yellowBright(msg)
 );
 
+export const error = (msg: string) => (
+  clc.redBright(msg)
+);
+
 export const success = (msg: string) => (
   clc.greenBright(msg)
 );

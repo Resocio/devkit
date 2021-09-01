@@ -18,6 +18,20 @@ export const copyTemplate = async (dir: string): Promise<void> => {
 
 export const createTemplate = async (dir: string): Promise<void> => {
   await copyTemplate(dir);
+};
 
-  // TODO: Print a message to indicate what's next
+export const directoryNotEmpty = async (dir: string): Promise<boolean> => {
+  try {
+    const stats = await fs.stat(dir);
+    if (stats.isDirectory()) {
+      const files = await fs.readdir(dir);
+      return files.length > 0;
+    } else {
+      // BEST This is not exactly a directory... maybe this function could be more specific
+      return true;
+    }
+  }
+  catch (err) {
+    return false;
+  }
 };

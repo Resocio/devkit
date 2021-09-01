@@ -2,7 +2,7 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react';
 
 import RatioTester, { RatioTesterProps } from './RatioTester';
-import { loadRemoteTemplate } from '@resoc/core';
+import { DefaultManifestName, loadRemoteTemplate } from '@resoc/core';
 
 export default {
   title: 'RatioTester',
@@ -20,7 +20,7 @@ const Template: TemplateStory = (args, { loaded: { template } }) => (
 export const Default = Template.bind({});
 Default.loaders = [
   async () => ({
-    template: await loadRemoteTemplate('/image-template-manifest.json')
+    template: await loadRemoteTemplate(`/${DefaultManifestName}`)
   }),
 ];
 Default.args = {

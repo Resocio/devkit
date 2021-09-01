@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 import { Card, Col, Container, Form, Row } from 'react-bootstrap';
-import { demoParamValues, ImageTemplate, ParamValues } from '@resoc/core';
+import { ImageTemplate, ParamValues, TemplateParam } from '@resoc/core';
 import ParamInput from './ParamInput';
 import TemplatePreview from './TemplatePreview';
 import styled from 'styled-components';
 import CreateCommandLine from './CreateCommandLine';
+import TemplateParameters from './TemplateParameters';
 
 export type TemplatePresentationProps = {
   template: ImageTemplate;
+  parameters?: TemplateParam[];
+  values: ParamValues;
+  onChange: (newValues: ParamValues) => void;
 };
 
 const RATIO_FACEBOOK = 1.91;
@@ -54,7 +58,7 @@ const PreviewsWrapper = styled.div`
 `;
 
 const TemplatePresentation = (props: TemplatePresentationProps) => {
-  const [parameters, setParameters] = useState<ParamValues>(demoParamValues(props.template.parameters));
+  const parameters = props.parameters || props.template.parameters;
 
   return (
     <Wrapper>
@@ -67,14 +71,14 @@ const TemplatePresentation = (props: TemplatePresentationProps) => {
               <Preview
                 title="Facebook"
                 template={props.template}
-                parameters={parameters}
+                parameters={props.values}
                 ratio={RATIO_FACEBOOK}
               />
 
               <Preview
                 title="Twitter Card"
                 template={props.template}
-                parameters={parameters}
+                parameters={props.values}
                 ratio={RATIO_TWTTER}
               />
             </PreviewsWrapper>
@@ -86,22 +90,13 @@ const TemplatePresentation = (props: TemplatePresentationProps) => {
             <Card.Body>
               <Card.Title>Parameters</Card.Title>
 
-              <Form>
-                {props.template.parameters.map(param => (
-                  <div className="mb-3">
-                    <ParamInput
-                      key={param.name}
-                      param={param}
-                      value={parameters[param.name]}
-                      onChange={(v) => {
-                        const newValues = Object.assign({}, parameters);
-                        newValues[param.name] = v;
-                        setParameters(newValues);
-                      }}
-                    />
-                  </div>
-                ))}
-              </Form>
+              <TemplateParameters
+                parameters={parameters}
+                values={props.values}
+                onChange={(newValues) => {
+                  props.onChange(newValues);
+                }}
+              />
             </Card.Body>
           </Card>
         </ParamsContainer>
@@ -114,7 +109,7 @@ const TemplatePresentation = (props: TemplatePresentationProps) => {
           </Card.Title>
           <CreateCommandLine
             template={props.template}
-            values={parameters}
+            values={props.values}
           />
         </Card.Body>
       </Card>

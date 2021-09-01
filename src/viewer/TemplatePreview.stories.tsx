@@ -2,7 +2,7 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react';
 
 import TemplatePreview, { TemplatePreviewProps } from './TemplatePreview';
-import { loadRemoteTemplate } from '@resoc/core';
+import { DefaultManifestName, loadRemoteTemplate } from '@resoc/core';
 
 export default {
   title: 'TemplatePreview',
@@ -20,7 +20,7 @@ const Template: TemplateStory = (args: TemplatePreviewProps, { loaded: { templat
 export const Default = Template.bind({});
 Default.loaders = [
   async () => ({
-    template: await loadRemoteTemplate('/image-template-manifest.json')
+    template: await loadRemoteTemplate(`/${DefaultManifestName}`)
   }),
 ];
 Default.args = {

@@ -2,6 +2,7 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react';
 
 import TemplateApp, { TemplateAppProps } from './TemplateApp';
+import { DefaultManifestName } from '@resoc/core';
 
 export default {
   title: 'TemplateApp',
@@ -18,7 +19,7 @@ const Template: Story<TemplateAppProps> = (args: TemplateAppProps) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  manifestUrl: '/image-template-manifest.json'
+  manifestUrl: `/${DefaultManifestName}`
 };
 
 export const Broken01 = Template.bind({});

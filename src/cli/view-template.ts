@@ -1,12 +1,12 @@
 import path from "path";
-import { cwd } from 'process'
 import fs from 'fs/promises'
 import os from 'os'
-import { syncOnChange } from "./sync-on-change";
-import supervisor from 'supervisor'
-import clc from 'cli-color'
-import { log, notice, warn } from "./log";
-import { file as tmpFile } from 'tmp-promise';
+import { log, newLine, notice, success, warn } from "./log";
+import opener from 'opener'
+import WebSocket from 'ws';
+import watch from 'node-watch'
+import express from "express";
+import serveStatic from "serve-static";
 
 export const viewTemplate = async (manifestPath: string) => {
   const viewerDir = path.normalize(`${__dirname}/../../viewer`);
@@ -15,27 +15,62 @@ export const viewTemplate = async (manifestPath: string) => {
   const templateDir = path.dirname(manifestPath);
   const serverDir = await fs.mkdtemp(path.join(os.tmpdir(), 'resoc-view-server-'));
 
-  const envFile = await tmpFile();
-  await fs.writeFile(envFile.path, JSON.stringify({
-    manifestPath,
-    templateDir,
-    manifestName
-  }));
-
-  syncOnChange(templateDir, serverDir, viewerDir, envFile.path);
-
-  const runFile = path.join(os.tmpdir(), 'reload-' + Math.random().toString().slice(2))
-  const serverFile = path.join(__dirname, '../../node_modules/reload/lib/reload-server.js')
-
-  const launchBrowser = true;
-  const verbose = false;
   const port = 8080;
-  const args = [
-    '-e', 'html|js|css|mustache|json|png|jpg|ico', '-w', serverDir, '-q', '--', serverFile, port, serverDir, launchBrowser, 'localhost',
-    runFile, '/index.html', undefined, verbose
-  ];
-  supervisor.run(args)
+  const siteUrl = `http://localhost:${port}/`;
 
-  log('Server started: ' + warn(`http://localhost: ${port}`));
-  log(`Edit your template files in ${templateDir} and see the changes in real time`);
+  console.log('Start server');
+
+  // Web server
+  const app = express();
+  app.set('etag', false);
+  app.use(function (req, res, next) {
+    if (req.url && req.url === '/env.json') {
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({
+        manifestPath,
+        templateDir,
+        manifestName
+      }));
+      return;
+    }
+
+    next();
+  });
+  app.use(serveStatic(viewerDir));
+  app.use(serveStatic(templateDir))
+  app.listen(port);
+
+  // Changes
+  const notifyChange = changeNotificationServer();
+  watch(templateDir, { recursive: true }, (evt, name) => {
+    log('Template changed, reload...');
+    notifyChange();
+  });
+
+  log(success('Done!') + ' Template available at ' + warn(siteUrl));
+  newLine();
+  log(`Edit your template files in ${warn(templateDir)} and see the changes in real time`);
+  newLine();
+
+  opener(siteUrl);
+};
+
+type Notify = () => void;
+
+const changeNotificationServer = (): Notify => {
+  let currentWs: WebSocket | null = null;
+
+  const wss = new WebSocket.Server({
+    port: 6789
+  });
+
+  wss.on('connection', (ws) => {
+    currentWs = ws;
+  });
+
+  return () => {
+    if (currentWs) {
+      currentWs.send("Update");
+    }
+  };
 };

@@ -24,7 +24,9 @@ const ParamInput = (props: ParamInputProps) => {
           }}
         >
           {props.param.values?.map(v =>
-            <option value={v.value}>{v.label || v.value}</option>
+            <option value={v.value} selected={v.value === props.value}>
+              {v.label || v.value}
+            </option>
           )}
         </Form.Select>
       );
